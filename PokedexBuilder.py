@@ -50,6 +50,7 @@ class PokedexBuilder:
         line=next(reader)
         line=next(reader)#first pk
         for row in range(9):
+            print (line)
             temp=Pokemon(line)
             self.Poke_Dex.append(temp)
             line=next(reader)
