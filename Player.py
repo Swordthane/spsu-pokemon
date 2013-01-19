@@ -9,8 +9,8 @@ class Player (dict): #TODO
         self.pokedex=PokeDexPlayer(pkdex)
 
         self.current = 0#box currently reseving
-        self.party = [0]
-        self.boxes = [[],[],[],[],[],[],[],[],[],[],[],[]]#there needs to be a better way of doing this old way did not work
+        self.party = []
+        self.boxes = [[]]#there needs to be a better way of doing this old way did not work
         self.UID = uuid4() #works better as a way to get truly unique IDs
 
         self.max_party=3
@@ -19,7 +19,7 @@ class Player (dict): #TODO
         
     def Capture(self,pk):
         #print("Congratulations you have captured {}".format(pk.name))
-	#x=input("would you like to give it a nickname?  Y/N \n")
+	    #x=input("would you like to give it a nickname?  Y/N \n")
         pk.UID=(self.UID.int)
         self.pokedex.Add_To_Dex(pk)
         if(self.pokemon_in_party == 0):

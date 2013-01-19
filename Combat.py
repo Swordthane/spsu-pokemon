@@ -6,16 +6,10 @@ class Combat:
         self.Player=player
         self.NPC=NPC
         self.WeatherCondition=weather
-        
-        
-
 
     def NormalCombat(self):
         temp=0
         print(self.Player.name," is ready to fight")
         if(len(self.player.party>0):
 
-
-
-              
         print("GO! ",self.player.party[0])

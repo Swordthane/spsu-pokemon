@@ -5,9 +5,6 @@ class WildGenerator:
     def __init(self,pkdex):
         self.pokedex=pkdex
 
-
-
-
     def generator(self,level,dnum):
         self.level=level
         self.dexnum=dnum
