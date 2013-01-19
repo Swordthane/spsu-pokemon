@@ -2,19 +2,19 @@
 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,1,0
 1,"Bulbasaur","Grass","Poison",,45,49,49,65,65,45,"Overgrow",,"Chlorophyll",64,0,0,0,1,0,0,45,0.7,6.9,0.5,"16 2",1059860,"Bulbasaur",1
 2,"Ivysaur","Grass","Poison",,60,62,63,80,80,60,"Overgrow",,"Chlorophyll",141,0,0,0,1,1,0,45,1,13,0.5,"32 3",1059860,"Ivysaur",2
-3,"Venusaur","Grass","Poison",,80,82,83,100,100,80,"Overgrow",,"Chlorophyll",208,0,0,0,2,1,0,45,2,100,0.5,,1059860,"Venusaur",3
+3,"Venusaur","Grass","Poison",,80,82,83,100,100,80,"Overgrow",,"Chlorophyll",208,0,0,0,2,1,0,45,2,100,0.5,0,1059860,"Venusaur",3
 4,"Charmander","Fire",,,39,52,43,60,50,65,"Blaze",,"Solar Power",65,0,0,0,0,0,1,45,0.6,8.5,0.5,"16 5",1059860,"Charmander",4
 5,"Charmeleon","Fire",,,58,64,58,80,65,80,"Blaze",,"Solar Power",142,0,0,0,1,0,1,45,1.1,19,0.5,"36 6",1059860,"Charmeleon",5
-6,"Charizard","Fire","Flying","Dragon",78,84,78,109,85,100,"Blaze",,"Solar Power",209,0,0,0,3,0,0,45,1.7,90.5,0.5,,1059860,"Charizard",6
+6,"Charizard","Fire","Flying","Dragon",78,84,78,109,85,100,"Blaze",,"Solar Power",209,0,0,0,3,0,0,45,1.7,90.5,0.5,0,1059860,"Charizard",6
 7,"Squirtle","Water",,,44,48,65,50,64,43,"Torrent",,"Rain Dish",66,0,0,1,0,0,0,45,0.5,9,0.5,"16 8",1059860,"Squirtle",7
 8,"Wartortle","Water",,,59,63,80,65,80,58,"Torrent",,"Rain Dish",143,0,0,1,0,1,0,45,1,22.5,0.5,"36 9",1059860,"Wartortle",8
-9,"Blastoise","Water",,,79,83,100,85,105,78,"Torrent",,"Rain Dish",210,0,0,0,0,3,0,45,1.6,85.5,0.5,,1059860,"Blastoise",9
+9,"Blastoise","Water",,,79,83,100,85,105,78,"Torrent",,"Rain Dish",210,0,0,0,0,3,0,45,1.6,85.5,0.5,0,1059860,"Blastoise",9
 10,"Caterpie","Bug",,,45,30,35,20,20,45,"Shield Dust",,"Run Away",53,1,0,0,0,0,0,255,0.3,2.9,0.5,"7 11",1000000,"Caterpie",10
 11,"Metapod","Bug",,,50,20,55,25,25,30,"Shed Skin",,"Shed Skin",72,0,0,2,0,0,0,120,0.7,9.9,0.5,"10 12",1000000,"Metapod",11
-12,"Butterfree","Bug","Flying",,60,45,50,80,80,70,"Compoundeyes",,"Tinted Lens",160,0,0,0,2,1,0,45,1.1,32,0.5,,1000000,"Butterfree",12
+12,"Butterfree","Bug","Flying",,60,45,50,80,80,70,"Compoundeyes",,"Tinted Lens",160,0,0,0,2,1,0,45,1.1,32,0.5,0,1000000,"Butterfree",12
 13,"Weedle","Bug","Poison",,40,35,30,20,20,50,"Shield Dust",,"Run Away",52,0,0,0,0,0,1,255,0.3,3.2,0.5,"7 14",1000000,"Weedle",13
 14,"Kakuna","Bug","Poison",,45,25,50,25,25,35,"Shed Skin",,,71,0,0,2,0,0,0,120,0.6,10,0.5,"10 15",1000000,"Kakuna",14
-15,"Beedrill","Bug","Poison",,65,80,40,45,80,75,"Swarm",,"Sniper",159,0,2,0,0,1,0,45,1,29.5,0.5,,1000000,"Beedrill",15
+15,"Beedrill","Bug","Poison",,65,80,40,45,80,75,"Swarm",,"Sniper",159,0,2,0,0,1,0,45,1,29.5,0.5,0,1000000,"Beedrill",15
 16,"Pidgey","Normal","Flying",,40,45,40,35,35,56,"Keen Eye","Tangled Feet","Big Pecks",55,0,0,0,0,0,1,255,0.3,1.8,0.5,"18 17",1059860,"Pidgey",16
 17,"Pidgeotto","Normal","Flying",,63,60,55,50,50,71,"Keen Eye","Tangled Feet","Big Pecks",113,0,0,0,0,0,2,120,1.1,30,0.5,"36 18",1059860,"Pidgeotto",17
 18,"Pidgeot","Normal","Flying",,83,80,75,70,70,91,"Keen Eye","Tangled Feet","Big Pecks",172,0,0,0,0,0,3,45,1.5,39.5,0.5,,1059860,"Pidgeot",18
@@ -419,7 +419,7 @@
 413,"Wormadam-G","Bug","Ground",,60,79,105,59,85,36,"Anticipation",,"Overcoat",159,0,0,2,0,0,0,45,0.5,6.5,0,"Lv. 20F Sand Cloak",1000000,"Wormadam-G",413
 413,"Wormadam-S","Bug","Steel",,60,69,95,69,95,36,"Anticipation",,"Overcoat",159,0,0,1,0,1,0,45,0.5,6.5,0,"Lv. 20F Trash Cloak",1000000,"Wormadam-S",413
 414,"Mothim","Bug","Flying",,70,94,50,94,50,66,"Swarm",,"Tinted Lens",159,0,1,0,1,0,0,45,0.9,23.3,1,"Lv. 20M",1000000,"Mothim",414
-415,"Combee","Bug","Flying",,30,30,42,30,42,70,"Honey Gather",,"Hustle",63,0,0,0,0,0,1,120,0.3,5.5,0.875,,1059860,"Combee",415
+415,"Combee","Bug","Flying",,30,30,42,30,42,70,"Honey Gather",,"Hustle",63,0,0,0,0,0,1,120,0.3,5.5,0.88,,1059860,"Combee",415
 416,"Vespiquen","Bug","Flying",,70,80,102,80,102,40,"Pressure",,"Unnerve",188,0,0,1,0,1,0,45,1.2,38.5,0,"Lv. 21F",1059860,"Vespiquen",416
 417,"Pachirisu","Electric",,,60,45,70,45,90,95,"Run Away","Pick Up","Volt Absorb",120,0,0,0,0,0,1,200,0.4,3.9,0.5,"N",1000000,"Pachirisu",417
 418,"Buizel","Water",,,55,65,35,60,30,85,"Swift Swim",,"Water Veil",75,0,0,0,0,0,1,190,0.7,29.5,0.5,,1000000,"Buizel",418
