@@ -62,19 +62,42 @@ def runGame():
         for event in pygame.event.get(): # event handling loop
             if event.type == QUIT:
                 terminate()
-            elif event.type == KEYDOWN:
-                if (event.key == K_LEFT or event.key == K_a) and direction != RIGHT:#ands make you not kill your self
-                    direction = LEFT
-                elif (event.key == K_RIGHT or event.key == K_d) and direction != LEFT:
-                    direction = RIGHT
-                elif (event.key == K_UP or event.key == K_w) and direction != DOWN:
-                    direction = UP
-                elif (event.key == K_DOWN or event.key == K_s) and direction != UP:
-                    direction = DOWN
-                elif event.key == K_ESCAPE:
-                    terminate()
-            elif event.type == KEYUP:
-                direction = STOP
+
+               
+            keyBord=pygame.key.get_pressed()#this does not get key order and is prioritsed in order of if statments 
+            if keyBord[pygame.K_LEFT]:
+                direction = LEFT
+            elif keyBord[pygame.K_RIGHT] :
+                direction = RIGHT
+            elif keyBord[pygame.K_UP]:
+                direction = UP
+            elif keyBord[pygame.K_DOWN]:
+                direction = DOWN
+            elif keyBord[pygame.K_ESCAPE]:
+                terminate()
+            else:
+                direction=STOP
+            
+
+
+            #this can be used to detect when some one presses a key but if they hold it down it will be missed
+            #elif event.type == KEYDOWN: 
+                #if (event.key == K_LEFT or event.key == K_a) and direction != RIGHT:#ands make you not kill your self
+                    #direction = LEFT
+                #elif (event.key == K_RIGHT or event.key == K_d) and direction != LEFT:
+                    #direction = RIGHT
+                #elif (event.key == K_UP or event.key == K_w) and direction != DOWN:
+                    #direction = UP
+                #elif (event.key == K_DOWN or event.key == K_s) and direction != UP:
+                    #direction = DOWN
+                #elif event.key == K_ESCAPE:
+                    #terminate()
+            #elif event.type == KEYUP:
+                #direction = STOP
+
+
+
+                
         # check if the worm has hit itself or the edge
         if wormCoords[HEAD]['x'] == -1 or wormCoords[HEAD]['x'] == CELLWIDTH or wormCoords[HEAD]['y'] == -1 or wormCoords[HEAD]['y'] == CELLHEIGHT:
             return # game over
@@ -100,6 +123,8 @@ def runGame():
             newHead = {'x': wormCoords[HEAD]['x'] + 1, 'y': wormCoords[HEAD]['y']}
         elif direction == STOP:
             newHead = {'x': wormCoords[HEAD]['x'] , 'y': wormCoords[HEAD]['y']}
+
+        
         wormCoords.insert(0, newHead)
         DISPLAYSURF.fill(BGCOLOR)
         drawGrid()
