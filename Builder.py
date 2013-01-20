@@ -20,26 +20,11 @@ class Builder:
         for row in reader:
             print(row)
             self.Natures[count]=[row]
-
         reader.close()
-
-        Nature
-        
-
-
-        
+        Nature        
         self.x=input("Players name is \n:")
-
-
-        
         player= Player(self.x,22,"M",Pokedex.pokeDex)
         for number in range(16):
             player.Capture(Pokedex.pokeDex[number%9])
-
-    
-
         player.check_party()
         player.check_box_system()
-    
-        
-        

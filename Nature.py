@@ -1,5 +1,3 @@
-
-
 class Nature:
     def __init__(self,Nat):
         self.Natures=Nat

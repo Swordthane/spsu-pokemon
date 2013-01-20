@@ -1,7 +1,7 @@
 from Pokemon import Pokemon
 from uuid import uuid4
 from PokeDexPlayer import PokeDexPlayer
-class Player (dict): #TODO
+class Player: #TODO
     def __init__(self, name, age, sex,pkdex):
         self.name = name
         self.age  = age
@@ -37,7 +37,8 @@ class Player (dict): #TODO
             self.party.append(pk)
             self.pokemon_in_party +=1
             #print("added {} to party".format(pk.name))
-            #print("Party size",self.pokemon_in_party) 
+            #print("Party size",self.pokemon_in_party)
+
     #prints the players party
     def check_party(self):
         print("Check Party")

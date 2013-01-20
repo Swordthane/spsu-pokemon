@@ -11,5 +11,4 @@ class Combat:
         temp=0
         print(self.Player.name," is ready to fight")
         if(len(self.player.party>0):
-
-        print("GO! ",self.player.party[0])
+            print("GO! ",self.player.party[0])

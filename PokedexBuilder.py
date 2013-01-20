@@ -14,8 +14,6 @@ class PokedexBuilder:
             #print("Build completed do you wish to save or edit?")
             #pickle.dump(self.pokeDex,FILE)
             #FILE.close()
-
-            
         elif(x=="LOAD"):
             print("Preparing to koad file")
             x=input("Target file name?")
@@ -24,17 +22,11 @@ class PokedexBuilder:
             print("Build loaded doing build check")
             self.check()
             FILE.close()
-
-
-
-            
         else:
             print("Invalid... \n Now closeing")
 
-        
-
     def build(self):
-        self.Poke_Dex=[]
+        self.Poke_Dex={}
         find=False
         x='stuff.csv'
         while(find!=True):
@@ -57,13 +49,10 @@ class PokedexBuilder:
         #for row in reader:
             #temp=Pokemon(line)
             #self.Poke_Dex.append(temp)
-            
-
-
-
         #print(line)
         #s1=Pokemon(line,22)
         #s1.ToString()
+        reader.close()
 
     def add_pk(self,pk):
         self.Poke_Dex.append(pk)
@@ -87,15 +76,7 @@ class PokedexBuilder:
             print("5:Change Nature")
             print("6:Change Attacks")
             print("7:Change Leveling")
-        
 
-
-
-
-
-
-        
-    
     def check(self):
         for element in self.Poke_Dex:
             #print("running")

@@ -1,6 +1,5 @@
 from Pokemon import Pokemon
 
-
 class PokeDexPlayer:
     def __init__(self,pkdex):
         self.GameDex=pkdex#this is the games version

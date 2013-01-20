@@ -4,10 +4,6 @@ class Evolution:
     def __init__(self,pokdex):
         Poke_Dex=pokdex
 
-
-
-   
-
     def Evolution(self,target,code):#code 0 means only one evol path 1 means multi
         temp=Poke_Dex[target.Dex_Num+1]
         if(code==0):

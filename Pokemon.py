@@ -148,11 +148,7 @@ class Pokemon():
     def Level(self , level):
         if(self.Level>level or self.Level==level):
             print("error")
-            
         self.Level=level
-
-        
-        
         if(self.Evolution_Type == self.Level or self.Evolution_Type <self.Level):
             self.Evolution(self,0)#wont work as method is no longer in pk
             print("evolved")
@@ -164,29 +160,10 @@ class Pokemon():
             print("ev")
         else:
             print("")
-
-
         self.Stats_Calc()
-
-
-
-
             
     def Evolution_Check_Stone(self,target,stone):
         if (target.Evolution_Type in stone):
             return True
         else:
             return False
-
-
-
-
-
-
-
-
-
-
-
-        
-    
