@@ -26,7 +26,7 @@ class PokedexBuilder:
             print("Invalid... \n Now closeing")
 
     def build(self):
-        self.Poke_Dex={}
+        self.Poke_Dex=[]
         find=False
         x='stuff.csv'
         while(find!=True):
@@ -52,7 +52,7 @@ class PokedexBuilder:
         #print(line)
         #s1=Pokemon(line,22)
         #s1.ToString()
-        reader.close()
+        #reader.close()
 
     def add_pk(self,pk):
         self.Poke_Dex.append(pk)
