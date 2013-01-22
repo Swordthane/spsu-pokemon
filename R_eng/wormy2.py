@@ -3,7 +3,7 @@
 # http://inventwithpython.com/pygame
 # Released under a "Simplified BSD" license
 
-import random, pygame, sys
+import random, pygame, sys, time
 from pygame.locals import *
 
 FPS = 15
@@ -32,14 +32,18 @@ STOP = 'stop'
 HEAD = 0 # syntactic sugar: index of the worm's head
 
 def main():
-    global FPSCLOCK, DISPLAYSURF, BASICFONT
+    global FPSCLOCK, DISPLAYSURF, BASICFONT, BEEP1
 
     pygame.init()
     FPSCLOCK = pygame.time.Clock()
     DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
     BASICFONT = pygame.font.Font('freesansbold.ttf', 18)
-    pygame.display.set_caption('Wormy')
+    pygame.display.set_caption('Borg')
+    BEEP1 = pygame.mixer.Sound('beep1.ogg')
 
+
+
+    
     showStartScreen()
     while True:
         runGame()
@@ -56,13 +60,19 @@ def runGame():
     direction = STOP
 
     # Start the apple in a random place.
-    apple = getRandomLocation()
-
+    apple = {'x':(CELLWIDTH/2), 'y':(CELLHEIGHT/2)}
+    
     while True: # main game loop
         for event in pygame.event.get(): # event handling loop
             if event.type == QUIT:
                 terminate()
-
+            
+            
+            if event.type == MOUSEBUTTONUP:
+                mouseX,mouseY = event.pos
+                apple={'x':int((mouseX / CELLSIZE)), 'y':int((mouseY / CELLSIZE))}
+                #apple = getRandomLocation() # set a new apple somewhere
+                BEEP1.play() 
                
             keyBord=pygame.key.get_pressed()#this does not get key order and is prioritsed in order of if statments 
             if keyBord[pygame.K_LEFT]:
@@ -130,7 +140,8 @@ def runGame():
         drawGrid()
         drawWorm(wormCoords)
         drawApple(apple)
-        drawScore(len(wormCoords) - 3)
+        drawCord(apple['x'], apple['y'])
+        #drawScore(len(wormCoords) - 3)
         pygame.display.update()
         FPSCLOCK.tick(FPS)
 def drawPressKeyMsg():
@@ -217,7 +228,12 @@ def drawScore(score):
     scoreRect = scoreSurf.get_rect()
     scoreRect.topleft = (WINDOWWIDTH - 120, 10)
     DISPLAYSURF.blit(scoreSurf, scoreRect)
-
+def drawCord(x,y):
+    
+    scoreSurf = BASICFONT.render('CORD: %s' % (x), True, WHITE)
+    scoreRect = scoreSurf.get_rect()
+    scoreRect.topleft = (WINDOWWIDTH - 120, 10)
+    DISPLAYSURF.blit(scoreSurf, scoreRect)
 
 def drawWorm(wormCoords):
     for coord in wormCoords:
