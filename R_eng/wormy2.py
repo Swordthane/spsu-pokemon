@@ -53,7 +53,7 @@ def runGame():
     wormCoords = [{'x': startx,     'y': starty},
                   {'x': startx - 1, 'y': starty},
                   {'x': startx - 2, 'y': starty}]
-    direction = RIGHT
+    direction = STOP
 
     # Start the apple in a random place.
     apple = getRandomLocation()
