@@ -2,6 +2,7 @@ import threading, csv
 import random, sys, copy, os, pygame
 from pygame.locals import *
 #class worldbuilder(threading.Thread):
+#16X16 grid size
 class worldbuilder:
 	def __init__(self):
 		print ("starting")
@@ -13,31 +14,50 @@ class worldbuilder:
 			self.section_name=x
 			x=input("Backround image location?")
 			self.backround=pygame.image.load(x)
-			self.width_section=self.backround.get_width()
-			self.height_section=self.backround.get_height()
+			for x in range(16):
+				if((self.backround.get_width()+x)%16==0):
+					self.width_section=self.backround.get_width()+x
+					print ("width:",self.backround.get_width()+x)
+			for x in range(16):
+				if((self.backround.get_height()+x)%16==0):
+					self.height_section=self.backround.get_height()+x	
+					print("Height",self.backround.get_height()+x)
+				
+				
 			print("width ",self.width_section," Hight ",self.height_section)
 			x=input("do wou wish to create meta data?")
 			if(x=="Y"):
-				self.meta_data=self.section_name+"meta.csv"
-				Meta_writer = csv.writer(open(self.meta_data, 'wb'))
+			
+			
+				self.meta_data=open(self.section_name+"meta.csv","w")
+				self.writer= csv.writer(self.meta_data)
+				
+				
+				#Meta_writer = csv.writer(open(self.meta_data, 'wb'))
+				
+				
 				print("made file")
 			
 				y=0
 				print("made row")
-				while(y<self.height_section):
-					Meta_writer.writerow(([0] * self.width_section))
-					y+=1
+				row=([0] * int(self.width_section/16))
+				self.writer.writerow(row)
+				self.writer.writerow(row)
+				self.writer.writerow(row)
+				self.writer.writerow(row)
+				self.writer.writerow(row)
+				#while(y<(self.height_section/16)):
+				#	self.writer.writerow(row)
+				#	y+=1
+					
+				self.meta_data.close()
 				print("done writing")
 				x='C'
 			if(x=='C'):
-				reader= csv.reader(open("boymeta.csv", 'rb'))
+				reader= csv.reader(open("boymeta.csv", 'r'))
 				print("read check")
-				y=0
-				while(y<self.height_section):
-					line=next(reader)
-					print(line)
-					y+=1
-				
+				for row in reader:
+					print(reader)
 x=worldbuilder()
 x.run()
 
