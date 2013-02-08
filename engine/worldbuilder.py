@@ -41,23 +41,24 @@ class worldbuilder:
 				y=0
 				print("made row")
 				row=([0] * int(self.width_section/16))
-				self.writer.writerow(row)
-				self.writer.writerow(row)
-				self.writer.writerow(row)
-				self.writer.writerow(row)
-				self.writer.writerow(row)
-				#while(y<(self.height_section/16)):
-				#	self.writer.writerow(row)
-				#	y+=1
+			
+				while(y<(self.height_section/16)):
+					self.writer.writerow(row)
+					y+=1
 					
 				self.meta_data.close()
 				print("done writing")
-				x='C'
+				
 			if(x=='C'):
 				reader= csv.reader(open("boymeta.csv", 'r'))
 				print("read check")
-				for row in reader:
-					print(reader)
+				y=0
+				while(y<((self.height_section/16)*2)):
+					line=next(reader)
+					if(y%2==0):
+						print(line)
+					y+=1
+
 x=worldbuilder()
 x.run()
 
