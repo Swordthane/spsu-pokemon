@@ -61,11 +61,11 @@ class worldviewer:
 				if event.type == KEYDOWN:
 					if event.key == K_l:
 						try:
-							reader=csv.reader(open(self.name_backround+"meta.csv","r"))
+							self.reader=csv.reader(open(self.name_backround+"meta.csv","r"))
 							print("Loading")
 							h=0
 							w=0
-							for line in reader:
+							for line in self.reader:
 								if(h%2==0):
 									w=0
 									for ele in line:
@@ -77,8 +77,21 @@ class worldviewer:
 								h+=1
 						except:
 							print("no meta data found")
-						
-						
+					if event.key == K_r:
+							self.meta_data=open(self.name_backround+"meta.csv","w")
+							self.writer= csv.writer(self.meta_data)
+							print("writing")
+							
+							for height in range(int(self.WindowHeight/16)):
+								row=[]
+								for width in range(int(self.WindowWidth/16)):
+									if(height,width)in self.targets:
+										row.append('b')
+									else:
+										row.append(0)
+								self.writer.writerow(row)
+								
+							self.meta_data.close()
 						
 			self.DISPLAYSURF.fill((255,255,255))
 			self.DISPLAYSURF.blit(self.backround, (0,0))		
