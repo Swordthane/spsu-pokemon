@@ -1,6 +1,7 @@
 import threading, csv
 import random, sys, copy, os, pygame
 from pygame.locals import *
+#from worldviewer import *
 #class worldbuilder(threading.Thread):
 #16X16 grid size
 class worldbuilder:
@@ -50,14 +51,19 @@ class worldbuilder:
 				print("done writing")
 				
 			if(x=='C'):
-				reader= csv.reader(open("boymeta.csv", 'r'))
+				reader= csv.reader(open("firemeta.csv", 'r'))
 				print("read check")
 				y=0
-				while(y<((self.height_section/16)*2)):
-					line=next(reader)
+				for line in reader:
 					if(y%2==0):
 						print(line)
 					y+=1
+				#y=0
+				#while(y<((self.height_section/16)*2)):
+				#	line=next(reader)
+				#	if(y%2==0):
+				#		print(line)
+				#	y+=1
 
 x=worldbuilder()
 x.run()

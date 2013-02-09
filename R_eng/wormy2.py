@@ -70,7 +70,7 @@ def runGame():
             
             if event.type == MOUSEBUTTONUP:
                 mouseX,mouseY = event.pos
-                apple={'x':int((mouseX / CELLSIZE)), 'y':int((mouseY / CELLSIZE))}
+                apple={'x':int((mouseX )), 'y':int((mouseY))}
                 #apple = getRandomLocation() # set a new apple somewhere
                 BEEP1.play() 
                
@@ -246,8 +246,8 @@ def drawWorm(wormCoords):
 
 
 def drawApple(coord):
-    x = coord['x'] * CELLSIZE
-    y = coord['y'] * CELLSIZE
+    x = coord['x'] 
+    y = coord['y'] 
     appleRect = pygame.Rect(x, y, CELLSIZE, CELLSIZE)
     pygame.draw.rect(DISPLAYSURF, RED, appleRect)
 
