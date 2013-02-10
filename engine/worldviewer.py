@@ -33,7 +33,6 @@ class worldviewer:
 		pygame.display.set_caption('world viewer')
 		self.DISPLAYSURF.fill((255,255,255))
 		self.DISPLAYSURF.blit(self.backround, (0,0))
-		self.direction="stop"
 		DARKGRAY  = ( 40,  40,	40)
 		for x in range(0, self.WindowWidth, self.CellSize): # draw vertical lines
 			pygame.draw.line(self.DISPLAYSURF, DARKGRAY, (x, 0), (x, self.WindowHeight))
@@ -48,9 +47,11 @@ class worldviewer:
 		RED = (255,0,0)
 		DARKGRAY  = ( 40,  40,	40)
 		BLUE=(0,255,0)
-		self.posx=0
-		self.posy=0
-		
+		self.direction="stop"
+		self.posx=16
+		self.posy=16
+		self.tposx=16
+		self.tposy=16
 		while True:
 			for event in pygame.event.get(): 
 				if (event.type == QUIT): 
@@ -117,38 +118,33 @@ class worldviewer:
 					self.direction="stop"
 				
 				if self.direction=="left" :
-					if (self.posx-16>=0 and self.posx-16<=self.WindowWidth):
-						if(self.posx-16,self.posy) in self.targets:
-							print("collision")
-						else:	
-							self.posx += -16
-				elif self.direction=="right" :
-					if (self.posx+16>=0 and self.posx+16<=self.WindowWidth):
-						if(self.posx+16,self.posy) in self.targets:
-							print("collision")
-						else:	
-							self.posx += 16
+					self.tposx += -16
+				elif self.direction=="right" :			
+					self.tposx += 16
 				elif self.direction=="up" :
-					if (self.posy-16>=0 and self.posy-16<=self.WindowWidth):
-						if(self.posx,self.posy-16) in self.targets:
-							print("collision")
-						else:	
-							self.posy += -16
+					self.tposy += -16
 				elif self.direction=="down" :
-					if (self.posy+16>=0 and self.posy+16<=self.WindowWidth):
-						if(self.posx,self.posy+16) in self.targets:
-							print("collision")
-						else:	
-							self.posy += 16
-							
+					self.tposy += 16
 				
-				
-
-
-
-
-
-
+				tloc=(self.tposx/16,self.tposy/16)
+				if(tloc in self.targets):
+					print ("collision")
+				elif(self.tposx<0):
+					print("x>0")
+					self.tposx=self.tposx+16
+				if(self.tposx>self.WindowWidth):
+					print("self.tposx<=self.WindowWidth")
+					self.tposx=self.tposx-16
+				if(self.tposy<0):
+					print("self.tposy>=0")
+					self.tposy=self.tposy+16
+				if(self.tposy>self.WindowWidth):
+					print("self.tposy<=self.WindowWidth")
+					self.tposy=self.tposy-16
+				else:
+					self.posx=self.tposx
+					self.posy=self.tposy
+					
 
 				
 			self.DISPLAYSURF.fill((255,255,255))
@@ -163,7 +159,7 @@ class worldviewer:
 				y=y*16
 				appleRect = pygame.Rect(x, y, self.CellSize, self.CellSize)
 				pygame.draw.rect(self.DISPLAYSURF, RED, appleRect)
-				
+			#print("my loc", self.posx, ",",self.posy)	
 			self.me = pygame.Rect(self.posx, self.posy, self.CellSize, self.CellSize)
 			pygame.draw.rect(self.DISPLAYSURF, BLUE, self.me)
 			pygame.display.update()		
