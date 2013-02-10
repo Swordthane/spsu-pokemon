@@ -33,7 +33,7 @@ class worldviewer:
 		pygame.display.set_caption('world viewer')
 		self.DISPLAYSURF.fill((255,255,255))
 		self.DISPLAYSURF.blit(self.backround, (0,0))
-		
+		self.direction="stop"
 		DARKGRAY  = ( 40,  40,	40)
 		for x in range(0, self.WindowWidth, self.CellSize): # draw vertical lines
 			pygame.draw.line(self.DISPLAYSURF, DARKGRAY, (x, 0), (x, self.WindowHeight))
@@ -47,6 +47,10 @@ class worldviewer:
 		self.targets=[]
 		RED = (255,0,0)
 		DARKGRAY  = ( 40,  40,	40)
+		BLUE=(0,255,0)
+		self.posx=0
+		self.posy=0
+		
 		while True:
 			for event in pygame.event.get(): 
 				if (event.type == QUIT): 
@@ -58,6 +62,8 @@ class worldviewer:
 						self.targets.remove(loc)
 					else:
 						self.targets.append(loc)
+						print(loc)
+						
 				if event.type == KEYDOWN:
 					if event.key == K_l:
 						try:
@@ -70,8 +76,8 @@ class worldviewer:
 									w=0
 									for ele in line:
 										if ele == 'b':
-											self.targets.append((h,w))
-											print(h,"+",w)
+											self.targets.append((h/2,w))
+											print(h/2,"+",w)
 										w+=1
 										
 								h+=1
@@ -87,12 +93,64 @@ class worldviewer:
 								for width in range(int(self.WindowWidth/16)):
 									if(height,width)in self.targets:
 										row.append('b')
+										print(height,width)
 									else:
 										row.append(0)
 								self.writer.writerow(row)
 								
 							self.meta_data.close()
-						
+				
+				
+				keyBord=pygame.key.get_pressed()#this does not get key order and is prioritsed in order of if statments 
+				
+				
+				
+				if keyBord[pygame.K_LEFT]:
+					self.direction="left"
+				elif keyBord[pygame.K_RIGHT] :
+					self.direction="right"
+				elif keyBord[pygame.K_UP]:
+					self.direction="up"
+				elif keyBord[pygame.K_DOWN]:
+					self.direction="down"
+				else:
+					self.direction="stop"
+				
+				if self.direction=="left" :
+					if (self.posx-16>=0 and self.posx-16<=self.WindowWidth):
+						if(self.posx-16,self.posy) in self.targets:
+							print("collision")
+						else:	
+							self.posx += -16
+				elif self.direction=="right" :
+					if (self.posx+16>=0 and self.posx+16<=self.WindowWidth):
+						if(self.posx+16,self.posy) in self.targets:
+							print("collision")
+						else:	
+							self.posx += 16
+				elif self.direction=="up" :
+					if (self.posy-16>=0 and self.posy-16<=self.WindowWidth):
+						if(self.posx,self.posy-16) in self.targets:
+							print("collision")
+						else:	
+							self.posy += -16
+				elif self.direction=="down" :
+					if (self.posy+16>=0 and self.posy+16<=self.WindowWidth):
+						if(self.posx,self.posy+16) in self.targets:
+							print("collision")
+						else:	
+							self.posy += 16
+							
+				
+				
+
+
+
+
+
+
+
+				
 			self.DISPLAYSURF.fill((255,255,255))
 			self.DISPLAYSURF.blit(self.backround, (0,0))		
 			for x in range(0, self.WindowWidth, self.CellSize): # draw vertical lines
@@ -106,7 +164,8 @@ class worldviewer:
 				appleRect = pygame.Rect(x, y, self.CellSize, self.CellSize)
 				pygame.draw.rect(self.DISPLAYSURF, RED, appleRect)
 				
-				
+			self.me = pygame.Rect(self.posx, self.posy, self.CellSize, self.CellSize)
+			pygame.draw.rect(self.DISPLAYSURF, BLUE, self.me)
 			pygame.display.update()		
 			self.FPSCLOCK.tick(15)
 Y=worldviewer()
