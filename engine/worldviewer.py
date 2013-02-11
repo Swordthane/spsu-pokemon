@@ -44,14 +44,17 @@ class worldviewer:
 		
 	def player(self):
 		self.targets=[]
+		self.teli=[]
 		RED = (255,0,0)
 		DARKGRAY  = ( 40,  40,	40)
-		BLUE=(0,255,0)
+		BLUE=(0,0,255)
+		GREEN=(0,255,0)
 		self.direction="stop"
 		self.posx=16
 		self.posy=16
 		self.tposx=16
 		self.tposy=16
+		self.place_type="b"
 		while True:
 			for event in pygame.event.get(): 
 				if (event.type == QUIT): 
@@ -59,13 +62,29 @@ class worldviewer:
 				if (event.type == MOUSEBUTTONUP):
 					mouseX,mouseY = event.pos
 					loc=((int(mouseX/16 ),int(mouseY/16)))#make a int that is divisable by 16
-					if(loc in self.targets):
-						self.targets.remove(loc)
-					else:
-						self.targets.append(loc)
-						print(loc)
+					if self.place_type=="b":
+						if(loc in self.targets):
+							self.targets.remove(loc)
+						else:
+							self.targets.append(loc)
+							print(loc)
+					if self.place_type=="t":
+						#TP=input("where does this go")
+						if(loc in self.teli):
+							self.teli.remove(loc)
+						else:
+							self.teli.append(loc)
+							print(loc)
+						
+						
 						
 				if event.type == KEYDOWN:
+					if event.key == K_t:
+						self.place_type="t"
+						
+					if event.key == K_b:
+						self.place_type="b"
+						
 					if event.key == K_l:
 						try:
 							self.reader=csv.reader(open(self.name_backround+"meta.csv","r"))
@@ -102,48 +121,56 @@ class worldviewer:
 							self.meta_data.close()
 				
 				
-				keyBord=pygame.key.get_pressed()#this does not get key order and is prioritsed in order of if statments 
+			keyBord=pygame.key.get_pressed()#this does not get key order and is prioritsed in order of if statments 
 				
 				
 				
-				if keyBord[pygame.K_LEFT]:
-					self.direction="left"
-				elif keyBord[pygame.K_RIGHT] :
-					self.direction="right"
-				elif keyBord[pygame.K_UP]:
-					self.direction="up"
-				elif keyBord[pygame.K_DOWN]:
-					self.direction="down"
-				else:
-					self.direction="stop"
+			if keyBord[pygame.K_LEFT]:
+				self.direction="left"
+			elif keyBord[pygame.K_RIGHT] :
+				self.direction="right"
+			elif keyBord[pygame.K_UP]:
+				self.direction="up"
+			elif keyBord[pygame.K_DOWN]:
+				self.direction="down"
+			else:
+				self.direction="stop"
+			#print(self.direction)
+			if self.direction=="left" :
+				self.tposx += -16
+			elif self.direction=="right" :			
+				self.tposx += 16
+			elif self.direction=="up" :
+				self.tposy += -16
+			elif self.direction=="down" :
+				self.tposy += 16
 				
-				if self.direction=="left" :
-					self.tposx += -16
-				elif self.direction=="right" :			
-					self.tposx += 16
-				elif self.direction=="up" :
-					self.tposy += -16
-				elif self.direction=="down" :
-					self.tposy += 16
-				
-				tloc=(self.tposx/16,self.tposy/16)
-				if(tloc in self.targets):
-					print ("collision")
-				elif(self.tposx<0):
-					print("x>0")
-					self.tposx=self.tposx+16
-				if(self.tposx>self.WindowWidth):
-					print("self.tposx<=self.WindowWidth")
-					self.tposx=self.tposx-16
-				if(self.tposy<0):
-					print("self.tposy>=0")
-					self.tposy=self.tposy+16
-				if(self.tposy>self.WindowWidth):
-					print("self.tposy<=self.WindowWidth")
-					self.tposy=self.tposy-16
-				else:
-					self.posx=self.tposx
-					self.posy=self.tposy
+			tloc=(self.tposx/16,self.tposy/16)
+			if(tloc in self.targets):
+				print ("collision")
+				if self.direction == "left":
+					self.tposx+=16
+				elif self.direction == "right":
+					self.tposx+=-16
+				elif self.direction == "up":
+					self.tposy+=16
+				elif self.direction == "down":
+					self.tposy+=-16
+			elif(self.tposx<0):
+				print("x>0")
+				self.tposx=self.tposx+16
+			elif(self.tposx>self.WindowWidth):
+				print("self.tposx<=self.WindowWidth")
+				self.tposx=self.tposx-16
+			elif(self.tposy<0):
+				print("self.tposy>=0")
+				self.tposy=self.tposy+16
+			elif(self.tposy>self.WindowWidth):
+				print("self.tposy<=self.WindowWidth")
+				self.tposy=self.tposy-16
+			else:
+				self.posx=self.tposx
+				self.posy=self.tposy
 					
 
 				
@@ -159,11 +186,18 @@ class worldviewer:
 				y=y*16
 				appleRect = pygame.Rect(x, y, self.CellSize, self.CellSize)
 				pygame.draw.rect(self.DISPLAYSURF, RED, appleRect)
+			for cord in self.teli:
+				x,y = cord 
+				x=x*16#send to correct corner 
+				y=y*16
+				appleRect = pygame.Rect(x, y, self.CellSize, self.CellSize)
+				pygame.draw.rect(self.DISPLAYSURF, BLUE, appleRect)	
+				
 			#print("my loc", self.posx, ",",self.posy)	
 			self.me = pygame.Rect(self.posx, self.posy, self.CellSize, self.CellSize)
-			pygame.draw.rect(self.DISPLAYSURF, BLUE, self.me)
+			pygame.draw.rect(self.DISPLAYSURF, GREEN, self.me)
 			pygame.display.update()		
-			self.FPSCLOCK.tick(15)
+			self.FPSCLOCK.tick(5)
 Y=worldviewer()
 #Y.run()
 print("done")
